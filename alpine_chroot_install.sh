@@ -1,11 +1,14 @@
 #!/bin/sh
 
+setup-apkrepos
+
 setup-keymap us us
 
 setup-hostname vostro
 echo -e '127.0.0.1 localhost.localdomain localhost vostro.localdomain vostro\n::1 localhost.localdomain localhost vostro.localdomain vostro' > /etc/hosts
 rc-service hostname restart
 
+apk add tzdata
 install -Dm 0644 /usr/share/zoneinfo/Asia/Kolkata /etc/zoneinfo/Asia/Kolkata
 export TZ='Asia/Kolkata'
 echo "export TZ='$TZ'" >> /etc/profile.d/timezone.sh
@@ -56,4 +59,15 @@ mount /dev/sdb3 /mnt/data
 
 swapon /dev/sdb1
 
-setup-disk -m sys /mnt
+mkdir -p /mnt/etc/apk
+cp -a /etc/apk/keys /mnt/etc/apk/
+cp /etc/apk/repositories /mnt/etc/apk/
+apk -p /mnt --initdb -U add $(cat /etc/apk/world)
+
+cp /etc/resolv.conf /mnt/etc/
+cd /mnt
+
+mount -o bind --rbind /dev dev
+mount -o bind --rbind /sys sys
+mount -t proc none proc
+chroot . /bin/ash alpine_chroot_commands.sh
