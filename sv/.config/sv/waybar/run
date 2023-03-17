@@ -1,0 +1,9 @@
+#!/bin/sh
+test -f /run/user/1000/wayland-1.lock >/dev/null || exit 1
+
+if [ "$XDG_SESSION_DESKTOP" = "river" ]
+then
+    exec waybar -c ~/.config/waybar/config -s ~/.config/waybar/style.css
+else
+    exec waybar -c ~/.config/waybar/config_sway -s ~/.config/waybar/style.css
+fi

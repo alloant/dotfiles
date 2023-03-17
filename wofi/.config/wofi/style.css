@@ -1,0 +1,33 @@
+window {
+  font-family: "Iosevka";
+  font-size: 18px;
+  margin: 5px;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+#input {
+  font-size: 25px;
+  border: none;
+  background: #000000;
+  color: #ffffff;
+  padding: 5px;
+  margin: 5px;
+}
+
+#entry:selected {
+  border: none;
+}
+
+#inner-box {
+  margin: 5px;
+}
+
+#scroll {
+  margin: 5px;
+}
+
+#text {
+  margin: 5px;
+  color: #ffffff;
+}

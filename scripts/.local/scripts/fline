@@ -1,0 +1,2 @@
+#!/bin/sh
+flatpak run --command='bottles-cli' com.usebottles.bottles run -b skyrim -e "$@"

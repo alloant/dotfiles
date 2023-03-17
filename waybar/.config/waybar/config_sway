@@ -1,0 +1,50 @@
+// vim:ft=json
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+   // "height": 20, // Waybar height (to be removed for auto height)
+    
+    "modules-left": [ 
+        "sway/workspaces",
+        "custom/keyboard",
+        "sway/mode",
+    ],
+    "modules-center": [
+        "clock#date"
+//        "custom/weather"
+    ],
+    "modules-right": [ 
+        "custom/turbo",
+//        "cpu",
+        "temperature",
+        "pulseaudio",
+        "custom/bluetooth",
+        "network",
+        "backlight",
+//        "custom/mouse",
+        "battery",
+        "tray",
+        "idle_inhibitor",
+        "custom/wlsunset"
+    ],
+    "gtk-layer-shell": false,
+
+    "include": [
+        "~/.config/waybar/config.d/audio",
+        "~/.config/waybar/config.d/backlight",
+        "~/.config/waybar/config.d/battery",
+        "~/.config/waybar/config.d/bluetooth",
+        "~/.config/waybar/config.d/cpu",
+        "~/.config/waybar/config.d/date",
+        "~/.config/waybar/config.d/idle",
+//        "~/.config/waybar/config.d/mouse",
+        //"~/.config/waybar/config.d/mpd",
+        "~/.config/waybar/config.d/network",
+        "~/.config/waybar/config.d/sway",
+        "~/.config/waybar/config.d/temperature",
+        "~/.config/waybar/config.d/tray",
+        "~/.config/waybar/config.d/weather-darksky",
+        "~/.config/waybar/config.d/wlsunset",
+        "~/.config/waybar/config.d/turbo"
+    ]
+}

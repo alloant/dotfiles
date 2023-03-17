@@ -1,0 +1,245 @@
+// vim:ft=json
+// Modules configuration
+    "river/tags": {
+        "num-tags": 5
+     },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 12,
+        "icon-theme": "Breeze-Dark",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
+    },
+    "custom/wlsunset": {
+        "exec": "$HOME/.config/waybar_river/modules/waybar-wlsunset.sh",
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "off": "",
+            "on": "<span color='#b30000'></span>"
+        },
+        "on-click": "$HOME/.config/waybar_river/modules/waybar-toggle-wlsunset.sh; pkill -SIGRTMIN+6 waybar",
+        "exec-on-event": "true",
+        "signal": 6,
+        "interval": 50
+    },
+    "custom/weather": {
+        "exec": "$HOME/.config/waybar_river/modules/waybar-weather.py",
+        "format": "{icon} {}°",
+        "format-icons": {
+            "sunny": "☀️",
+            "clear": "☀️",
+            "mostly clear": "⛅️",
+            "partly cloudy": "⛅️",
+            "mostly cloudy": "☁️",
+            "cloudy": "☁️",
+            "fair": "☁️",
+            "mist": "🌫",
+            "smoke": "🌫",
+            "haze": "🌫",
+            "fog": "🌫",
+            "shallow fog": "🌫"
+        },
+        "tooltip": true,
+        "interval": 3600,
+        "return-type": "json"
+    },
+    "custom/weather2": {
+        "exec": "~/.config/waybar_river/modules/waybar-weather2.py",
+        "interval": 1800,
+        "return-type": "json",
+        "on-click": "xdg-open https://weather.com/en-IN/weather/today/l/$(location_id)"
+        // "format-alt": "{alt}",
+    },
+    "custom/idle": {
+        "exec": "$HOME/.config/waybar_river/modules/waybar-idle.sh",
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "off": "",
+            "on": ""
+        },
+        "on-click": "$HOME/.config/waybar_river/modules/waybar-toggle-idle.sh; pkill -SIGRTMIN+5 waybar",
+        "exec-on-event": "true",
+        "signal": 5,
+        "interval": 50
+    },
+    "custom/bluetooth-battery": {
+        "format": "{}",
+        "return-type": "json",
+        "interval": 5,
+        "exec": "~/.config/waybar_river/modules/waybar-bluetooth-battery.sh",
+        "exec-if": "~/.scripts/bluetooth_battery_status.sh >/dev/null 2>&1",
+        "signal": 9
+    },
+    "custom/bluetooth": {
+        "exec": "$HOME/.config/waybar_river/modules/waybar-bluetooth",
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "on": "",
+            "off": "<span color='#b30000'></span>"
+        },
+        "on-click": "wofi-bluetooth",
+        "interval": 5
+    },
+    "bluetooth": {
+        "interval": 30,
+        "format": "{} {icon}",
+        // "format-alt": "{status}",
+        "format-icons": {
+            "enabled": "",
+            "disabled": ""
+        },
+        "on-click": "wofi-bluetooth"
+    },    
+    "battery": {
+		"bat": "BAT0",
+        "states": {
+			// "good": 95,
+			"warning": 20,
+			"critical": 10
+		},
+		"format": "<span color='#e88939'>{icon}</span> {capacity}%",
+		
+		"format-charging": "<span color='#e88939'> </span> {capacity}% ({time})",
+		"format-plugged":  "<span color='#e88939'>{icon}  </span> {capacity}%",
+//		"format-good": "", // An empty format will hide the module
+		"format-discharging": "<span color='#e88939'>{icon}</span> {capacity}% ({time})",
+		"format-icons": ["", "", "", "", ""]
+	}, 
+    "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}",
+    "format-icons": {
+        "locked": "",
+        "unlocked": ""
+        }
+    },
+    "custom/mouse": {
+        "format": " {percentage}%",
+        "return-type": "json",
+        "exec": "$HOME/.config/waybar_river/modules/supower.py --model 'Bluetooth Mouse M336/M337/M535' --text '{Type}'",
+        "interval": 60,
+        "format-icons": ["", "", "", "", ""]
+    },
+    "custom/keyboard": {
+      "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+      // Interval set only as a fallback, as the value is updated by signal
+      "interval": 30,
+      "format": "  {}", // Icon: keyboard
+      // Signal sent by Sway key binding (~/.config/sway/key-bindings)
+      "signal": 1, // SIGHUP
+      "tooltip": false
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": "true"
+    },
+    "tray": {
+        //"icon-size": 11,
+        "spacing": 5
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", ""],
+        "on-scroll-up": "light -A 5",
+        "on-scroll-down": "light -U 5"
+    },
+    "clock#time": {
+        "format": "  {:%H:%M}",
+    },
+    "clock#date": {
+        "format": "{:%A %e %b    %H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "today-format": "<span color='#A9A9A9'><b>{}</b></span>"
+    },
+    "cpu": {
+        "interval": "1",      
+        "format": "  {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+        "max-length": 13,
+        "min-length": 13,
+        "on-click": "alacritty --class float -e htop --sort-key PERCENT_CPU",
+        "tooltip": false
+    },
+    "temperature": {
+        //"thermal-zone": 5,
+        "interval": "2",
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+        "critical-threshold": 74,
+        "format-critical": "  {temperatureC}°C",
+        "format": "{icon}  {temperatureC}°C",
+        "format-icons": ["", "", ""],
+        "max-length": 7,
+        "min-length": 7
+    },
+    "network": {
+        // "interface": "wlan0", // (Optional) To force the use of this interface,
+        "format-wifi": "  {essid}",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "family": "ipv4",
+        "tooltip-format-wifi": " {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n {bandwidthUpBits}  {bandwidthDownBits}",
+        "on-click-right": "iwgtk"
+    },
+    "pulseaudio": {
+        "scroll-step": 3, // %, can be a float
+        "format": "{icon} {volume}% {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-source": "",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "ponymix -t sink toggle",
+        "on-click-middle": "ponymix -t source toggle",
+        "on-click-right": "pavucontrol-qt",
+        "on-scroll-up": "ponymix -t sink increase 5",
+        "on-scroll-down": "ponymix -t sink decrease 5"
+    },
+    "mpd": {
+	    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+	    "format-disconnected": "",
+	    "format-stopped": "",
+        //"format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
+	    "interval": 2,
+	    "consume-icons": {
+		    "on": " " // Icon shows only when "consume" is on
+	    },
+	    "random-icons": {
+		    "off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+		    "on": " "
+	    },
+	    "repeat-icons": {
+		    "on": " "
+	    },
+	    "single-icons": {
+		    "on": "1 "
+	    },
+	    "state-icons": {
+		    "paused": "",
+		    "playing": ""
+	    },
+	    "tooltip-format": "MPD (connected)",
+	    "tooltip-format-disconnected": "MPD (disconnected)"
+    }

@@ -1,0 +1,28 @@
+
+default_border pixel 3
+default_floating_border normal
+smart_borders on
+
+#gaps inner 5
+#gaps outer 5
+#smart_gaps on
+
+#titlebar_border_thickness 0
+
+output "*" background ~/.config/sway/wall.png fill
+#set $wallpapers_path $HOME/Pictures/wallpapers
+#output * bg `find $wallpapers_path -type f | shuf -n 1` fill
+
+#seat seat0 xcursor_theme 'Breeze_Snow' 48
+
+# Gnome Theme Settings
+# 
+	# Set Gnome Theme
+	set $gnome-schema org.gnome.desktop.interface
+	exec_always {
+		gsettings set $gnome-schema gtk-theme 'Breeze-Dark'
+	    	gsettings set $gnome-schema icon-theme 'Breeze-dark'
+	    	gsettings set $gnome-schema cursor-theme 'Breeze_Snow'
+	    	gsettings set $gnome-schema font-name 'Noto Sans 10'
+	    	gsettings set $gnome-schema monospace-font-name 'Noto Sans Monospace 10'
+	}

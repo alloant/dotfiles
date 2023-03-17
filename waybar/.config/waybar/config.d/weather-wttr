@@ -1,0 +1,24 @@
+// vim:ft=json
+{
+    "custom/weather": {
+    "exec": "$HOME/.config/waybar/modules/weather-wttr.py",
+    "format": "{icon} {}°",
+    "format-icons": {
+        "sunny": "☀️",
+        "clear": "☀️",
+        "mostly clear": "⛅️",
+        "partly cloudy": "⛅️",
+        "mostly cloudy": "☁️",
+        "cloudy": "☁️",
+        "fair": "☁️",
+        "mist": "🌫",
+        "smoke": "🌫",
+        "haze": "🌫",
+        "fog": "🌫",
+        "shallow fog": "🌫"
+    },
+    "tooltip": true,
+    "interval": 3600,
+    "return-type": "json"
+    }
+}

@@ -1,0 +1,48 @@
+#!/bin/sh
+#riverctl spawn "svl once ~/service/location"
+
+# DBUS
+riverctl spawn "dbus-update-activation-environment SEATD_SOCK DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river DBUS_SESSION_DBUS_ADDRESS"
+
+# Binding to reload the configuration
+riverctl map normal "Mod4" R spawn $HOME/.config/river/init
+
+riverctl spawn $HOME/.config/river/init_scripts/wallpaper.sh
+riverctl spawn $HOME/.config/river/init_scripts/bindings.sh
+riverctl spawn $HOME/.config/river/init_scripts/import-gsettings.sh
+
+riverctl spawn $HOME/.config/river/layouts/default_layout.sh
+
+
+#Touchpad
+#riverctl input 1133:45089:Logitech_Pebble_Mouse accel-profile none
+#riverctl input 1133:45089:Logitech_Pebble_Mouse pointer-accel 0.6
+#riverctl input 1133:45089:Logitech_Pebble_Mouse scroll-method button
+#riverctl input 1133:45089:Logitech_Pebble_Mouse scroll-button BTN_SIDE
+
+riverctl input 1267:12363:ELAN469D:00_04F3:304B_Touchpad disable-while-typing enabled
+riverctl input 1267:12363:ELAN469D:00_04F3:304B_Touchpad accel-profile none
+riverctl input 1267:12363:ELAN469D:00_04F3:304B_Touchpad pointer-accel 0.2
+
+# Cursor mode
+riverctl map-pointer normal Mod4 BTN_LEFT move-view
+riverctl map-pointer normal Mod4 BTN_RIGHT resize-view
+riverctl focus-follow-cursor normal
+riverctl set-cursor-warp on-output-change
+
+#bash $HOME/.config/river/process.sh
+
+riverctl spawn pipewire
+riverctl spawn wireplumber
+#riverctl spawn pcloud
+riverctl spawn mega-sync
+
+# User defined services `runsvdir`
+SVDIR=$HOME/runit/service
+if [ $(pgrep -f -c "^runsvdir ${SVDIR}") = 0 ]
+then
+exec runsvdir ${SVDIR} \
+    "log: ..........................................."
+else
+    echo "Service is already running"
+fi

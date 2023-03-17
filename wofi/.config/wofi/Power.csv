@@ -1,0 +1,4 @@
+logout,"swaymsg exit"
+reboot,"doas reboot"
+power off,"doas poweroff"
+Lock Screen Off,"swaylock -f -c 000000"

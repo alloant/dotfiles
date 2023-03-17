@@ -1,0 +1,18 @@
+// vim:ft=json
+{
+    "custom/pcloud": {
+        "exec": "$HOME/.config/waybar/modules/pcloud.sh",
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "CONNECTING": "",
+            "READY": "",
+            "UPLOADING": "",
+            "DOWNLOADING": "",
+            "OFFLINE": "",
+            "default": ""
+        },
+        "tooltip": false,
+        "interval": 5
+    }
+}

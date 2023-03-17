@@ -1,0 +1,11 @@
+qemu-system-x86_64 \
+    -enable-kvm \
+    -boot menu=on \
+    -drive file=/home/antonio/Personal/cr/alpine_cr.img \
+    -device qemu-xhci,id=xhci -device usb-host,bus=xhci.0,vendorid=0x0781,productid=0x5583 \
+    -m 4G \
+    -cpu host \
+    -smp 2 \
+    -vga virtio -display sdl,gl=on \
+    -device intel-hda \
+    -nic user,hostfwd=tcp::60022-:22 \

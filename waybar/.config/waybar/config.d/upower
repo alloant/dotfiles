@@ -1,0 +1,10 @@
+// vim:ft=json
+{
+    "upower": {
+        "format": "{percentage}",
+        "icon-size": 20,
+        "hide-if-empty": true,
+        "tooltip": true,
+        "tooltip-spacing": 20
+    }
+}

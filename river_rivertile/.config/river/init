@@ -1,0 +1,37 @@
+#!/bin/sh
+# See the river(1), riverctl(1), and rivertile(1) man pages for complete
+# documentation.
+
+# DBUS
+riverctl spawn "dbus-update-activation-environment SEATD_SOCK DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
+
+# SCREENCASTING AND SOUND
+riverctl spawn "exec /usr/libexec/xdg-desktop-portal-wlr -r"
+riverctl spawn "exec /usr/libexec/xdg-desktop-portal -r"
+
+# Binding to reload the configuration (good for edits on bindings or adding new stuff
+riverctl map normal "Mod4" R spawn $HOME/.config/river/init
+
+# Setting some startup stuff
+riverctl spawn $HOME/.config/river/autostart.sh
+riverctl spawn $HOME/.config/river/swaybg.sh
+riverctl spawn $HOME/.config/river/bindings.sh
+
+# Borders
+#riverctl border-color-unfocused 0x608A78ff
+#riverctl border-color-focused 0xEFB8CCff
+#riverctl border-width 2
+#riverctl background-color 0x1d2021
+
+# Cursor mode
+riverctl focus-follows-cursor normal
+
+# User defined services `runsvdir`
+SVDIR="/home/antonio/service"
+pgrep -f "^runsvdir ${SVDIR}" &&
+    echo "service is already running..."
+sleep 2s
+exec runsvdir ${SVDIR} \
+    "log: ..........................................." &
+
+

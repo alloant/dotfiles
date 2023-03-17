@@ -1,0 +1,138 @@
+#!/bin/sh
+# Use the "logo" key as the primary modifier
+mod="Mod4"
+
+set $altmenu ~/.config/sway/scripts/wofi_csv
+
+# Normal terminal and version with large ttf font for screenshare
+riverctl map normal $mod Return spawn 'foot --log-level=warning'
+riverctl map normal $mod+Shift Return spawn 'foot --font=dejavusansmono:size=12 --log-level=warning'
+
+riverctl map normal $mod Q close
+riverctl map normal $mod+Shift Q exit
+
+# launcher
+riverctl map normal $mod D spawn 'j4-dmenu-desktop --dmenu="wofi -d -i"'
+#riverctl map normal Alt D spawn wofi
+# view focus
+riverctl map normal $mod Tab zoom
+riverctl map normal $mod Right focus-view next
+riverctl map normal $mod Left focus-view previous
+
+# Mod+{Up,Right,Down,Left} to change layout orientation
+riverctl map normal $mod+Shift Up    send-layout-cmd rivertile "main-location top"
+riverctl map normal $mod+Shift Right send-layout-cmd rivertile "main-location right"
+riverctl map normal $mod+Shift Down  send-layout-cmd rivertile "main-location bottom"
+riverctl map normal $mod+Shift Left  send-layout-cmd rivertile "main-location left"
+
+# main factor/count
+riverctl map normal $mod+Mod1 Left send-layout-cmd rivertile 'main-ratio -0.05'
+riverctl map normal $mod+Mod1 Right send-layout-cmd rivertile 'main-ratio +0.05'
+riverctl map normal $mod+Mod1 Up send-layout-cmd rivertile 'main-count +1'
+riverctl map normal $mod+Mod1 Down send-layout-cmd rivertile 'main-count -1'
+
+# move/resize
+riverctl map-pointer normal $mod BTN_LEFT move-view
+riverctl map-pointer normal $mod BTN_RIGHT resize-view
+
+# toggle float/fullscreen
+riverctl map normal $mod grave toggle-float
+riverctl map normal $mod F toggle-fullscreen
+
+# multi-output
+riverctl map normal $mod Period focus-output next
+riverctl map normal $mod Comma focus-output previous
+riverctl map normal $mod+Shift Period send-to-output next
+riverctl map normal $mod+Shift Comma send-to-output previous
+
+# screenshots
+riverctl map normal $mod S spawn 'grim -g "$(slurp)" - | wl-copy'
+
+# tags
+for i in $(seq 1 9); do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal $mod $i set-focused-tags $tags
+    riverctl map normal $mod+Shift $i set-view-tags $tags
+    riverctl map normal $mod+Control $i toggle-focused-tags $tags
+    riverctl map normal $mod+Shift+Control $i toggle-view-tags $tags
+done
+tags1to9=$(((1 << 9) - 1))
+riverctl map normal $mod 0 set-focused-tags $tags1to9
+riverctl map normal $mod+Shift 0 set-view-tags $tags1to9
+
+# passthrough mode for nested sessions
+riverctl declare-mode passthrough
+riverctl map normal $mod Semicolon enter-mode passthrough
+riverctl map passthrough $mod Semicolon enter-mode normal
+
+riverctl set-repeat 80 300
+
+riverctl xcursor-theme Adwaita
+
+# float stuff with app-id "float"
+riverctl float-filter-add app-id float
+
+riverctl default-layout rivertile
+
+
+# bindings applications
+riverctl map normal $mod Z spawn qutebrowser
+riverctl map normal $mod C spawn 'clipman pick -t wofi'
+riverctl map normal $mod X spawn 'foot -e lf-tmux'
+riverctl map normal $mod+Shift B spawn swaylock -f -c 000000
+riverctl map normal $mod B spawn wofi-bluetooth
+riverctl map normal $mod N spawn iwd-dmenu
+
+riverctl map normal $mod P spawn 'passmenu --type'
+riverctl map normal $mod+Shift P spawn passmenu
+
+riverctl map normal $mod+Shift D spawn '$altmenu Menu'
+riverctl map normal $mod+Shift Q spawn '$altmenu Power'
+riverctl map normal $mod E spawn nvim-qt
+riverctl map normal $mod M spawn ncmpcpp
+riverctl map normal $mod O spawn ~/.config/sway/scripts/screenOnOff.sh
+
+# The scratchpad will live on an unused tag. Which tags are used depends on your
+# config, but rivers default uses the first 9 tags.
+scratch_tag=$((1 << 20 ))
+
+# Toggle the scratchpad with Super+P
+riverctl map normal $mod minus toggle-focused-tags ${scratch_tag}
+
+# Send windows to the scratchpad with Super+Shift+P
+riverctl map normal $mod+Shift minus set-view-tags ${scratch_tag}
+
+# Set spawn tagmask to ensure new windows don't have the scratchpad tag unless
+# explicitly set.
+all_but_scratch_tag=$(( ((1 << 32) - 1) ^ $scratch_tag ))
+riverctl spawn-tagmask ${all_but_scratch_tag}
+
+rivertile &
+
+if [ -e /run/user/1000/river_first ]
+then
+    echo "file exists"
+else
+    #runsvdir /home/antonio/service &
+    /usr/libexec/polkit-gnome-authentication-agent-1 &
+    swaybg -i ~/.config/sway/wall.png &
+    wireplumber &
+    pipewire &
+    pipewire-pulse &
+    batsignal -b &
+    wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json" &
+    mako --default-timeout 3000 &
+    udiskie &
+    gammastep-indicator &
+    mpd &
+    mpDris2 &
+    waybar -c ~/.config/waybar_river/config -s ~/.config/waybar_river/style.css &
+    swayidle -w \
+          timeout 300 'swaylock -f -c 000000' \
+          timeout 600 'swaymsg "output * dpms off"' \
+               resume 'swaymsg "output * dpms on"' \
+          before-sleep 'swaylock -f -c 000000' &
+
+
+    echo 1 > /run/user/1000/river_first
+fi

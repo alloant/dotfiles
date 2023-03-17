@@ -1,0 +1,166 @@
+# Basic vars
+set shell sh
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
+#set icons
+set period 1
+set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+
+set nopreview
+set ratios 1
+set info size:time
+
+# Vars that depend on environmental variables
+$lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/scope"
+
+# cmds/functions
+cmd open ${{
+    case $(mimetype -b $f) in
+    application/epub+zip) setsid -f zathura $fx ;;
+    application/x-gtar|application/gzip|application/x-bzip2|application/x-rar|application/zip|application/x-iso9660-image|application/x-xz)
+            mntdir="$f-archivemount"
+            [ ! -d "$mntdir" ] && {
+                mkdir "$mntdir"
+                archivemount "$f" "$mntdir"
+                echo "$mntdir" >> "/tmp/__lf_archivemount_$id"
+            }
+            lf -remote "send $id cd \"$mntdir\""
+            lf -remote "send $id reload"
+            ;;
+	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx >/dev/null 2>&1 ;;
+    text/csv) sc-im $fx ;;
+    text/*) $EDITOR $fx;;
+	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+	image/svg+xml) display -- $f ;;
+	image/*) imv $f ;;
+	audio/*) mpv --audio-display=no --script=/usr/lib/mpv-mpris/mpris.so $f ;;
+	video/*) setsid -f mpv $f -quiet --script=/usr/lib/mpv-mpris/mpris.so >/dev/null 2>&1 ;;
+	application/pdf) setsid -f zathura $fx >/dev/null 2>&1 ;;
+    #application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|application/vnd.ms-excel|application/x-sc) sc-im $fx ;;
+    *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
+    esac
+}}
+
+cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+
+cmd extract ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "extract?[y/N]"
+	read ans
+	[ $ans = "y" ] && ext $fx
+}}
+
+
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx\n"
+    printf "delete?[y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf $fx
+}}
+
+
+
+cmd moveto ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	clear; echo "Move to where?"
+	dest="$(cut -d'	' -f2- ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|' )" &&
+	for x in $fx; do
+		eval mv -iv \"$x\" \"$dest\"
+	done &&
+	notify-send "🚚 File(s) moved." "File(s) moved to $dest."
+}}
+
+cmd copyto ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	clear; echo "Copy to where?"
+	dest="$(cut -d'	' -f2- ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf | sed 's|~|$HOME|' )" &&
+	for x in $fx; do
+		eval cp -ivr \"$x\" \"$dest\"
+	done &&
+	notify-send "📋 File(s) copied." "File(s) copies to $dest."
+}}
+
+cmd adoc2docx ${{
+    if [ $# -eq 0 ]
+    then
+        asciidoctor --backend docbook --out-file - $fx| \
+        pandoc --from docbook --to docx --output "$(basename $f .adoc).docx"
+    else
+        asciidoctor -b docbook -d $* --out-file - $fx| \
+        pandoc --from docbook --to docx --output "$(basename $f .adoc).docx"
+    fi
+}}
+
+cmd adoc2pdf ${{
+    if [ $# -eq 0 ]
+    then
+        asciidoctor-pdf -a optimize $fx
+    else
+        asciidoctor-pdf -d $* -a optimize $fx
+    fi
+}}
+
+# Archive bindings
+cmd unarchive ${{
+  case "$f" in
+    *.zip) unzip "$f" ;;
+    *.tar.gz) tar -xzvf "$f" ;;
+    *.tar.bz2) tar -xjvf "$f" ;;
+    *.tar) tar -xvf "$f" ;;
+    *) echo "Unsupported format" ;;
+  esac
+}}
+
+cmd sshfs ${{
+    ~/.scripts/ssh_mount.sh $*
+}}
+
+cmd setbg "$1"
+cmd bulkrename $vidir
+
+# Bindings
+map <c-f> $lf -remote "send $id select '$(fzf)'"
+map J $lf -remote "send $id cd $(cut -d'	' -f2 ${XDG_CONFIG_HOME:-$HOME/.config}/shell/bm-dirs | fzf)"
+map gb bottom
+map gt top
+map D delete
+map E extract
+map C copyto
+map M moveto
+map <c-n> push :mkdir<space>
+map <c-r> reload
+map <c-s> set hidden!
+map <enter> shell
+map x $$f
+map X !$f
+map o &mimeopen $f
+map O $mimeopen --ask $f
+
+map tv :sshfs xtras@192.168.0.21:/home/xtras/Videos
+
+map | $tmux split -h lf
+map - $tmux split -v lf
+
+map + $imv-folder
+
+map A rename # at the very end
+map c push A<c-u> # new rename
+map I push A<c-a> # at the very beginning
+map i push A<a-b><a-b><a-f> # before extention
+map a push A<a-b> # after extention
+map B bulkrename
+map b $setbg $f
+
+map <c-e> down
+map <c-y> up
+map V push :!nvim<space>
+
+# Source Bookmarks
+source "~/.config/lf/shortcutrc"

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Wait for the PipeWire Pulse daemon to start.
+sv check "$HOME/.config/sv/mpd" >/dev/null || exit 1
+
+[ -r ./conf ] && . ./conf
+
+exec mpDris2 ${OPTS:-} 2>&1

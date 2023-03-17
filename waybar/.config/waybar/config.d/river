@@ -1,0 +1,6 @@
+// vim:ft=json
+{
+    "river/tags": {
+        "num-tags": 5
+    }
+}

@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/antonio/Books'
+let g:netrw_dirhist_6='/home'
+let g:netrw_dirhist_5='/home/antonio/Books'
+let g:netrw_dirhist_4='/home/antonio/.dotfiles/user/ranger/.config/ranger'
+let g:netrw_dirhist_3='/home/antonio/.config/mpDris2'
+let g:netrw_dirhist_2='/home/antonio/.config/sxhkd'
+let g:netrw_dirhist_1='/data/antonio/void-packages/srcpkgs/redshift-wlr'

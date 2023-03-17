@@ -1,0 +1,11 @@
+// vim:ft=json
+{
+    "cpu": {
+        "interval": "1",      
+        "format": " {max_frequency}GHz <span color=\"darkgray\">| {usage}%</span>",
+        "max-length": 13,
+        "min-length": 13,
+        "on-click": "alacritty --class float -e htop --sort-key PERCENT_CPU",
+        "tooltip": false
+    }
+}

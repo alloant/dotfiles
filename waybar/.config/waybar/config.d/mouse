@@ -1,0 +1,10 @@
+// vim:ft=json
+{
+    "custom/mouse": {
+        "format": " {percentage}%",
+        "return-type": "json",
+        "exec": "$HOME/.config/waybar/modules/supower.py --model 'Logitech Pebble' --text '{Type}'",
+        "interval": 60,
+        "format-icons": ["", "", "", "", ""]
+    }
+}

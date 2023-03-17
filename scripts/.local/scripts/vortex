@@ -1,0 +1,4 @@
+#!/bin/bash
+
+WINEPREFIX=/data/antonio/Instaladores/ISOs/.others/skyrim/vortex \
+wine $1
