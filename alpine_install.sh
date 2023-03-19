@@ -57,3 +57,5 @@ mount /dev/sdb3 /mnt/data
 swapon /dev/sdb1
 
 setup-disk -m sys /mnt
+
+dd bs=440 conv=notrunc count=1 if=/usr/share/syslinux/mbr.bin of=/dev/sda
