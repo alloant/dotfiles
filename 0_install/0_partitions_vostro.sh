@@ -1,23 +1,5 @@
 #!/bin/sh
 
-setup-keymap us us
-
-setup-hostname vostro
-echo -e '127.0.0.1 localhost.localdomain localhost vostro.localdomain vostro\n::1 localhost.localdomain localhost vostro.localdomain vostro' > /etc/hosts
-rc-service hostname restart
-
-install -Dm 0644 /usr/share/zoneinfo/Asia/Kolkata /etc/zoneinfo/Asia/Kolkata
-export TZ='Asia/Kolkata'
-echo "export TZ='$TZ'" >> /etc/profile.d/timezone.sh
-
-passwd
-
-apk add chronyd
-rc-service chronyd start
-rc-update add chronyd
-
-apk add e2fsprogs parted
-
 alias pa="parted -sa optimal /dev/sda"
 alias pb="parted -sa optimal /dev/sdb"
 
@@ -56,6 +38,3 @@ mount /dev/sdb3 /mnt/data
 
 swapon /dev/sdb1
 
-setup-disk -m sys /mnt
-
-dd bs=440 conv=notrunc count=1 if=/usr/share/syslinux/mbr.bin of=/dev/sda
