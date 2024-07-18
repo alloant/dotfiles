@@ -1,0 +1,54 @@
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+  font-family: "Hasklug Nerd Font Mono";
+}
+
+//Global Styles
+.bar {
+  background-color: $bg;
+  color: $fg-alt;
+  margin: .5rem .25rem;
+  border-radius: .4rem;
+}
+
+.apps {
+  background-color: $bg-alt;
+  padding: .1rem .05rem;
+  border-radius: .3rem;
+}
+
+.clock {
+  font-size: 1.2rem;
+
+  &.hour {
+    font-weight: bold;
+    color: $fg;
+  }
+
+  &.minute {
+    color: $fg-alt;
+  }
+
+  &.separator {
+    color: $fg-alt;
+  }
+  
+  .timebox {
+    font-size: 0.5rem;
+
+    &.magenta {
+      color: $magenta;
+    }
+
+    &.green {
+      color: $green;
+    }
+
+    &.yellow {
+      color: $yellow;
+    }
+  }
+}
+
+@import "hyprland/hyprland.scss";
+@import "widgets/widgets.scss";

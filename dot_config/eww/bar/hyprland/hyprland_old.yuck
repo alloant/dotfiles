@@ -1,0 +1,34 @@
+(deflisten hyprland `bar/hyprland/scripts/get-workspaces`)
+
+(deflisten workspaces :initial "[]" "bash bar/hyprland/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "bash bar/hyprland/scripts/get-active-workspace")
+(defwidget workspaces []
+  (eventbox :onscroll "bash bar/hyprland/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+    (box :space-evenly true
+      (label :text "${workspaces}${current_workspace}" :visible false)
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label :text "${workspace.id}")
+          ))))))
+
+(defwidget workspaces []
+  (box 
+    :class "workspaces"
+    :orientation "v"
+    :width 20
+    (for workspace in hyprland
+      (eventbox
+        :cursor "pointer"
+        :onscroll "echo {} | sed -e 's/up/-1/g' -e 's/down/+1/g' | xargs hyprctl dispatch workspace"
+        :halign "center"
+        (button 
+          :class "${workspace.current ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+          :onclick "hyprctl dispatch workspace ${workspace.id}"
+          :halign "center"
+          (button
+            :width 25
+            :halign "center"
+            :class "icon ${workspace.current ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            {workspace.current ? "●" : "●"}
+          ))))))

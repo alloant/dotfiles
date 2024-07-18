@@ -1,0 +1,150 @@
+(include "bar/widgets/calendar.yuck")
+
+;; VARIABLES
+
+(defpoll clock_time :interval "5m" "date +\%I")
+(defpoll clock_minute :interval "5s" "date +\%M")
+(defpoll clock_date :interval "10h" "date '+%d/%m'")
+(defpoll volume_percent :interval "3s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll brightness_percent :interval "5s" "brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
+(defpoll battery :interval "15s" :initial 0 "bar/widgets/scripts/battery --bat")
+(defpoll battery_status :interval "1m" "bar/widgets/scripts/battery --bat-st")
+(defpoll memory :interval "15s" "bar/widgets/scripts/memory")
+(defpoll memory_used_mb :interval "2m" "bar/widgets/scripts/mem-ad used")
+(defpoll memory_total_mb :interval "2m" "bar/widgets/scripts/mem-ad total")
+(defpoll memory_free_mb :interval "2m" "bar/widgets/scripts/mem-ad free")
+(defvar vol_reveal false)
+(defvar br_reveal false)
+(defvar music_reveal false)
+(defvar wifi_rev false)
+(defvar time_rev false)
+
+(defwidget fuzzel []
+  (eventbox
+    :cursor "pointer"
+    :halign "center"
+    (button 
+      :class "fuzzel"
+      :valign "start"
+      :onclick "fuzzel"
+      :width 25
+      "" )))
+
+(defwidget central-icon []
+  (eventbox
+    :cursor "pointer"
+    :halign "center"
+    (button 
+      :class "central-icon"
+      :valign "start"
+      :onclick "eww open --toggle central"
+      :width 20
+      "󰙪" )))
+
+
+;; Date
+(defpoll hour :interval "1s" "date '+%H'")
+(defpoll minute :interval "1s" "date '+%M'")
+
+(defwidget clock []
+  (box 
+    :class "clock"
+    :orientation "v"
+    :space-evenly false
+    :spacing 4
+    :halign "center"
+    :valign "end"
+    (label 
+      :class "clock hour" 
+      :text hour
+    )
+    (box :class "timebox" :spacing 4)
+    (label 
+      :class "clock minute" 
+      :text minute
+    )
+    (button :onclick "eww open calendar")
+    ))
+
+
+
+(defwidget bat []
+	(box :class "bat_module" :vexpand "false" :hexpand "false" 
+    (circular-progress :value battery
+      :class "batbar"
+      :thickness 4
+      (button 
+        :class "iconbat"
+        :tooltip "battery on ${battery}%"
+        :onclick "bar/widgets/scripts/pop system"
+        ""))))
+
+
+(defwidget mem []
+		(box :class "mem_module" :vexpand "false" :hexpand "false" 
+            (circular-progress :value memory
+                :class "membar"
+                :thickness 4
+            (button 
+                :class "iconmem"
+                :limit-width 2
+                :tooltip "using ${memory}% ram"
+                :onclick "$HOME/.config/eww/bar/scripts/pop system"
+                :show_truncated false
+                :wrap false
+                ""))))
+
+
+
+(defwidget sep []
+  (box :class "module-2" :vexpand "false" :hexpand "false"
+    (label :class "separ" :text "|")))
+
+(defwidget clock_module []
+  (eventbox :onhover "eww update time_rev=true"
+			  :onhoverlost "eww update time_rev=false"
+    (box :class "module" :space-evenly "false" :orientation "h" :spacing "3" 
+      (label :text clock_time :class "clock_time_class" )
+      (label :text "" :class "clock_time_sep" )
+      (label :text clock_minute :class "clock_minute_class")
+	  (revealer :transition "slideleft"
+			  :reveal time_rev
+			  :duration "350ms"
+      (button :class "clock_date_class"
+             :onclick "eww open calendar"
+        )
+  ))))
+  
+(defwidget volume []
+  (eventbox :onhover "eww update vol_reveal=true"
+			  :onhoverlost "eww update vol_reveal=false"
+  (box :class "module-2" :space-evenly "false" :orientation "h" :spacing "3" 
+	(button   :onclick "scripts/pop audio"   :class "volume_icon" "")
+	(revealer :transition "slideleft"
+			  :reveal vol_reveal
+			  :duration "350ms"
+	(scale    :class "volbar"
+			  :value volume_percent
+			  :orientation "h"
+			  :tooltip "${volume_percent}%"
+			  :max 100
+			  :min 0
+			  :onchange "amixer -D pulse sset Master {}%" )))))
+
+(defwidget bright []
+  (eventbox :onhover "eww update br_reveal=true" :onhoverlost "eww update br_reveal=false"
+  (box :class "module-2" :space-evenly "false" :orientation "h" :spacing "3" 
+    (label :text "" :class "bright_icon" :tooltip "brightness")
+	(revealer :transition "slideleft"
+			  :reveal br_reveal
+			  :duration "350ms"
+	(scale    :class "brightbar"
+			  :value brightness_percent
+			  :orientation "h"
+			  :tooltip "${brightness_percent}%"
+			  :max 100
+			  :min 0
+			  :onchange "brightnessctl set {}%" )))))
+
+
