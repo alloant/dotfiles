@@ -1,0 +1,6 @@
+#!/bin/sh
+
+picture=$(fd . ~/.dotfiles/wallpapers | shuf -n 1)
+
+echo preload = "$picture" > ~/.config/hypr/hyprpaper.conf
+echo wallpaper = "eDP-1,$picture" >> ~/.config/hypr/hyprpaper.conf

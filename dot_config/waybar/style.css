@@ -1,0 +1,366 @@
+@define-color light #f8f8f2;
+@define-color lightgray #777777;
+@define-color dark #282a36;
+
+@define-color warning #feef71; 
+@define-color critical #ff5555;
+
+@define-color inactive #44475a;
+
+@define-color battery #50da7b; 
+@define-color network #1793d1; 
+@define-color tag #282a36; 
+@define-color cpu #bd93f9;
+@define-color temp #50da7b;
+@define-color audio #f4a86a;
+@define-color bright #8be9fd;
+
+
+@keyframes blink-warning {
+    70% {
+        color: @light;
+    }
+
+    to {
+        color: @dark;
+        background-color: @warning;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: @light;
+    }
+
+    to {
+        color: @dark;
+        background-color: @critical;
+    }
+}
+
+* {
+  all: unset;
+  font-family: "Hasklug Nerd Font Mono";
+  background-color: transparent;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 1px;
+  padding-right: 0px;
+  margin: 0px;
+}
+
+
+/* Each module that should blink */
+#temperature,
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Each critical module */
+#cpu.critical,
+#temperature.critical,
+#battery.critical {
+    border-color: @critical;
+    background: @critical;
+}
+
+/* Each critical that should blink */
+#temperature.critical,
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 2s;
+}
+
+/* Each warning */
+#cpu.warning,
+#temperature.warning,
+#battery.warning {
+    color: @dark;
+    border-color: @warning;
+    background: @warning;
+}
+
+/* Each warning that should blink */
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+/* All modules on top */
+#temperature.icon,
+#pulseaudio.icon,
+#bluetooth,
+#custom-cpu,
+#custom-backlight,
+#idle_inhibitor,
+#battery.icon {
+  margin-top: 6px;
+  border-radius: 10px 10px 0px 0px;
+  border: 1px solid @light;
+}
+
+/* All modules down */
+#temperature,
+#pulseadio.mic,
+#pulseadio.source-muted.mic,
+#network,
+#cpu,
+#backlight,
+#custom-turbo,
+#battery {
+  border-radius: 0px 0px 10px 10px;
+  border: 1px solid @light;
+}
+
+
+/* Workspaces hyprland */
+#workspaces {
+    background-color: transparent;
+}
+#workspaces button {
+    border-radius: 3px;
+    color: @light;
+}
+#workspaces button.active {
+    color: @tag;
+    background-color: @light;
+    border: 1px solid @light;
+}
+#workspaces button.empty {
+    color: transparent;
+    background-color: transparent;
+}
+
+/* River tags */
+#tags {
+    background-color: transparent;
+}
+
+#tags button {
+    color: transparent;
+}
+
+#tags button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: @tag;
+}
+
+#tags button.focused {
+    color: @light;
+    background-color: @tag;
+}
+
+#tags button.occupied {
+      color: @tag;
+}
+
+#tags button.focused.occupied {
+    color: @light;
+    background-color: @tag;
+}
+
+
+/* battery */
+#battery {
+  color: @dark;
+  background: @battery;
+  border-color: @battery;
+}
+#battery.icon {
+  color: @battery;
+  background: @dark;
+  border-color: @battery;
+  font-size: 16px;
+}
+#battery.discharging {
+  color: @dark;
+  background: @warning;
+  border-color: @warning;
+}
+#battery.icon.discharging {
+  color: @warning;
+  background: @dark;
+  border-color: @warning;
+}
+#battery.charging {
+  color: @dark;
+  background: @battery;
+  border-color: @battery;
+}
+#battery.icon.charging {
+  color: @battery;
+  background: @dark;
+  border-color: @battery;
+}
+/* End of battery */
+
+/* Bluetooth and network */
+#bluetooth {
+  color: @network;
+  border-color: @network;
+  background: @dark;
+  font-size: 16px;
+}
+#bluetooth.disabled {
+  background: @inactive;
+}
+#bluetooth.on {
+  background: @dark;
+}
+#bluetooth.off {
+  background: @inactive;
+}
+#bluetooth.conected {
+  background: @dark;
+  color: @network;
+}
+#network.disconnected {
+  background: @network;
+  color: @dark;
+}
+
+#network.disconnected {
+  border-color: @network;
+  background: @network;
+  color: @dark;
+  font-size: 16px;
+}
+#network {
+  border-color: @network;
+  background: @dark;
+  color: @light;
+  font-size: 16px;
+}
+/* End bluetooth and network */
+
+/* Tray */
+#custom-turbo,
+#custom-wlsunset,
+#idle_inhibitor {
+  background: @dark;
+  border-color: @dark;
+  font-size: 20px;
+}
+
+#custom-threshold {
+  background: @dark;
+  border-color: @dark;
+  font-size: 10px;
+}
+
+#tray {
+    font-size: 10px;
+    margin-bottom: 4px;
+}
+
+
+/* cpu */
+#cpu {
+  background: @cpu;
+  color: @dark;
+  border-color: @cpu;
+}
+#custom-cpu {
+  color: @cpu;
+  border-color: @cpu;
+  background: @dark;
+}
+
+/* temp */
+#temperature {
+  background-color: @temp;
+  color: @dark;
+  border-color: @temp;
+}
+#temperature.icon {
+  background-color: @dark;
+  color: @temp;
+  border-color: @temp;
+}
+#temperature.critical {
+  background:  @critical;
+  border: 1px solid @critical;
+}
+
+/* backlight */
+#custom-backlight {
+  color: @bright;
+  background: @dark;
+  border-color: @bright;
+}
+#backlight {
+  color: @dark;
+  background: @bright;
+  border-color: @bright;
+}
+
+/* clock */
+#clock.time {
+  margin-top: 4px;
+  padding-top: 8px;
+  padding-bottom: 4px;
+  background: @dark;
+  color: @light;
+  font-size: 24px;
+  border-radius: 6px 6px 6px 6px;
+  border-color: @light;
+  font-family: "SF Digital Readout";
+}
+#clock.day {
+  background: @dark;
+  color: @light;
+  font-size: 14px;
+  border-color: @light;
+}
+#clock.weekday {
+  background: @light;
+  color: @dark;
+  font-size: 12px;
+  border-radius: 6px 6px 0px 0px;
+  border-color: @light;
+}
+#clock.month {
+  background: @light;
+  color: @dark;
+  font-size: 12px;
+  border-radius: 0px 0px 6px 6px;
+  border-color: @light;
+}
+
+/* audio */
+#pulseaudio {
+  background: @audio;  
+  color: @dark;
+  border-radius: 0px;
+  border: 1px solid @audio;
+}
+#pulseaudio.icon {
+  background: @dark;
+  color: @audio;
+  border-color: @audio;
+  font-size: 16px;
+}
+#pulseaudio.mic {
+  background: @dark;
+  border-color: @audio;
+  border-radius: 0px 0px 10px 10px;
+  color: @audio;
+  font-size: 16px;
+}
+#pulseaudio.source-muted.mic { /* Unsused but kept for those who needs it */
+  background: @audio;
+  border-radius: 0px 0px 10px 10px;
+  color: @dark;
+  font-size: 16px;
+}
+#pulseaudio.muted.icon {
+  background: @audio;
+  color: @dark;
+  font-size: 16px;
+}
+
+
+

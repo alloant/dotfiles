@@ -1,0 +1,68 @@
+[colors.bright]
+black = "#666666"
+blue = "#7aa6da"
+cyan = "#54ced6"
+green = "#9ec400"
+magenta = "#b77ee0"
+red = "#ff3334"
+white = "#ffffff"
+yellow = "#e7c547"
+
+[colors.cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[colors.dim]
+black = "#000000"
+blue = "#506d8f"
+cyan = "#497e7a"
+green = "#7a8530"
+magenta = "#80638e"
+red = "#8c3336"
+white = "#9a9a9a"
+yellow = "#97822e"
+
+[colors.normal]
+black = "#000000"
+blue = "#7aa6da"
+cyan = "#70c0ba"
+green = "#b9ca4a"
+magenta = "#c397d8"
+red = "#d54e53"
+white = "#eaeaea"
+yellow = "#e6c547"
+
+[colors.primary]
+background = "#111111"
+bright_foreground = "#ffffff"
+dim_foreground = "#9a9a9a"
+foreground = "#cccccc"
+
+[colors.selection]
+background = "#404040"
+text = "#eaeaea"
+
+[colors.vi_mode_cursor]
+cursor = "#ffffff"
+text = "#000000"
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "hack"
+style = "Bold"
+
+[font.bold_italic]
+family = "hack"
+style = "Bold Italic"
+
+[font.italic]
+family = "hack"
+style = "Italic"
+
+[font.normal]
+family = "hack"
+
+[window]
+opacity = 0.8

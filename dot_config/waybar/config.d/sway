@@ -1,0 +1,28 @@
+// vim:ft=json
+{
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true
+    //    "format": "{index}"
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/window": {
+        "format": "{}",
+        "max-length": 50, 
+        "tooltip": false
+    },
+    "sway/language": {
+        "format": "<big></big> {}",
+        "max-length": 5
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+        "tooltip": "true"
+    }
+}

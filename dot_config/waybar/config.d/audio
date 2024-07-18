@@ -1,0 +1,41 @@
+// vim:ft=json
+{
+  "pulseaudio#icon": {
+    "format": "{icon}",
+    "format-bluetooth": "<small>{icon}</small>",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋎",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol-qt",
+    "ignored-sinks": ["Easy Effects Sink"],
+    "tooltip":false
+    },
+  "pulseaudio": {
+    "format": "{volume}",
+    "format-bluetooth": "{volume}",
+    "scroll-step": 1,
+    "on-click": "pavucontrol",
+    "ignored-sinks": ["Easy Effects Sink"],
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-right": "pavucontrol-qt",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "ignored-sinks": ["Easy Effects Sink"],
+    "tooltip":false
+  },
+  "pulseaudio#mic": {
+    "format": "{format_source}",
+    "format-source-muted": "",
+    "format-source": "",
+    "tooltip": false
+  }
+}

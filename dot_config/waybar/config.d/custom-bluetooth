@@ -1,0 +1,14 @@
+// vim:ft=json
+{
+    "custom/bluetooth": {
+        "exec": "$HOME/.config/waybar/modules/bluetooth.sh",
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "on": "",
+            "off": ""
+        },
+        "on-click": "wofi-bluetooth",
+        "interval": 5
+    }
+}

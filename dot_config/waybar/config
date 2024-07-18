@@ -1,0 +1,50 @@
+// vim:ft=json
+{
+  "modules-center": [
+    "clock#weekday",
+    "clock#day",
+    "clock#month",
+    "clock#time"
+  ],
+  "modules-right": [ 
+    "tray",
+    "idle_inhibitor",
+    "custom/wlsunset",
+    "custom/threshold",
+    "custom/turbo",
+    "custom/cpu",
+    "cpu",
+    "temperature#icon",
+    "temperature",
+    "pulseaudio#icon",
+    "pulseaudio",
+    "pulseaudio#mic",
+//    "wireplumber",
+//    "bluetooth",
+//    "network",
+//    "custom/backlight",
+//    "backlight",
+    "battery#icon",
+    "battery"
+  ],
+  "gtk-layer-shell": false,
+  "include": [
+    "~/.config/waybar/config.d/hypr",
+    "~/.config/waybar/config.d/audio",
+    "~/.config/waybar/config.d/backlight",
+    "~/.config/waybar/config.d/battery",
+    "~/.config/waybar/config.d/bluetooth",
+    "~/.config/waybar/config.d/cpu",
+    "~/.config/waybar/config.d/date",
+    "~/.config/waybar/config.d/idle_inhibitor",
+    //"~/.config/waybar/config.d/mpd",
+    "~/.config/waybar/config.d/network",
+    "~/.config/waybar/config.d/river",
+    "~/.config/waybar/config.d/temperature",
+    "~/.config/waybar/config.d/tray",
+    "~/.config/waybar/config.d/wlsunset",
+//    "~/.config/waybar/config.d/wireplumber",
+    "~/.config/waybar/config.d/battery_threshold",
+    "~/.config/waybar/config.d/turbo"
+  ]
+}

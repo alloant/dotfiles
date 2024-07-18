@@ -1,0 +1,37 @@
+#exec /usr/libexec/polkit-gnome-authentication-agent-1
+
+#exec --no-startup-id wireplumber
+#exec --no-startup-id pipewire
+#exec --no-startup-id pipewire-pulse
+#exec easyeffects --gapplication-service
+
+#exec autotiling
+#exec dbus-update-activation-environment --all WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+exec batsignal -b
+
+#exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
+#exec wl-paste -t text --watch clipman store
+
+exec autocutsel
+
+#exec nm-applet --indicator
+#exec iwgtk -i
+#exec cmst -m -w 10
+
+#exec mako --default-timeout 4000
+
+#exec udiskie
+
+#exec gammastep-indicator
+
+exec mpd
+exec mpDris2
+
+#exec blueman-applet
+
+#exec /usr/libexec/xdg-desktop-portal-gtk -r
+#exec /usr/libexec/xdg-desktop-portal-wlr -r
+#exec "sh -c 'sleep 5;exec /usr/libexec/xdg-desktop-portal -r'"
+
+exec ~/.local/scripts/svdir.sh

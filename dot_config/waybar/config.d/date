@@ -1,0 +1,22 @@
+// vim:ft=json
+{
+    "clock#time": {
+        "format": "{:%H%n%M}",
+        "tooltip": false
+    },
+    "clock#day": {
+        "format": "{:%e}",
+        "tooltip-format": "<big>{:%e %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "today-format": "<span color='#A9A9A9'><b>{}</b></span>"
+    },
+    "clock#month": {
+        "format": "{:%b}",
+        "tooltip-format": "<big>{:%e %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "today-format": "<span color='#A9A9A9'><b>{}</b></span>"
+    },
+    "clock#weekday": {
+        "format": "{:%a}",
+        "tooltip-format": "<big>{:%e %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "today-format": "<span color='#A9A9A9'><b>{}</b></span>"
+    }
+}

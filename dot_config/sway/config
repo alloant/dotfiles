@@ -1,0 +1,36 @@
+# Default config for sway
+
+set $mod Mod4
+
+# Your preferred terminal emulator
+set $term alacritty
+
+
+# Your preferred application launcher
+# Note: it's recommended that you pass the final command to sway
+#set $menu dmenu_path | bemenu-run | xargs swaymsg exec
+
+### Input configuration
+   input "1267:12363:ELAN469D:00_04F3:304B_Touchpad" {
+       dwt enabled
+       tap enabled
+       natural_scroll enabled
+       middle_emulation enabled
+   }
+
+
+# Status Bar:
+#bar {
+#	swaybar_command waybar
+#}
+
+
+input 1:1:AT_Translated_Set_2_keyboard {
+	xkb_layout us,us
+	xkb_variant ,intl
+	xkb_options grp:alt_shift_toggle
+}
+
+
+include /etc/sway/config.d/*
+include $HOME/.config/sway/config.d/*

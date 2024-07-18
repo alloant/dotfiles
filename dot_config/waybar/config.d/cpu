@@ -1,0 +1,13 @@
+// vim:ft=json
+{
+  "custom/cpu": {
+    "format": "",
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": "1",      
+    "format": "{usage}",
+    "on-click": "alacritty --class float -e htop --sort-key PERCENT_CPU",
+    "tooltip": false
+  }
+}

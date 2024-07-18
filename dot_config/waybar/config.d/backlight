@@ -1,0 +1,17 @@
+// vim:ft=json
+{
+  "custom/backlight": {
+    "format": "",
+    "on-scroll-up": "light -A 5",
+    "on-scroll-down": "light -U 5",
+    "tooltip": false
+  },
+  "backlight": {
+    // "device": "acpi_video1",
+    "format": "{percent}",
+    "format-icons": ["", ""],
+    "on-scroll-up": "light -A 5",
+    "on-scroll-down": "light -U 5",
+    "tooltip": false
+  }
+}

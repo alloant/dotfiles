@@ -1,0 +1,3 @@
+#[ "$(tty)" = "/dev/tty1" ] && XDG_SESSION_DESKTOP=qtile exec dbus-run-session qtile start -b wayland
+[ "$(tty)" = "/dev/tty1" ] && exec dbus-run-session Hyprland
+#[ "$(tty)" = "/dev/tty1" ] && exec .local/scripts/river-user.sh

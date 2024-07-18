@@ -1,0 +1,17 @@
+// vim:ft=json
+{
+    "custom/idle": {
+        "exec": "$HOME/.config/waybar/modules/idle.sh",
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "off": "",
+            "on": ""
+        },
+        "on-click": "$HOME/.config/waybar/modules/toggle-idle.sh; pkill -SIGRTMIN+5 waybar",
+        "exec-on-event": "true",
+        "signal": 5,
+        "tooltip":false,
+        "interval": 50
+    }
+}

@@ -1,0 +1,89 @@
+# Aliases
+aliases['exa'] = "exa --color=auto --group-directories-first"
+aliases['ls'] = "exa"
+aliases['la'] = "exa -a"
+aliases['l'] = "exa -l"
+aliases['l.'] = "exa -ad .*"
+aliases['ll'] = "exa -la"
+
+aliases['find'] = "fd"
+
+aliases['grep'] = "grep --color=auto"
+aliases['egrep'] = "egrep --color=auto"
+aliases['fgrep'] = "fgrep --color'] = auto"
+
+aliases['phone'] = "user@192.168.0.40:/storage/emulated/0/Download/"
+
+# I use these mainly for auto complete as it doesn't work with tuxc, etc
+aliases['xq'] = "xbps-query -R" # Show package details
+aliases['xs'] = "xbps-query -Rs" # Search for package
+aliases['xf'] = "xbps-query -f" # Show files from package
+aliases['xl'] = "doas xbps-install" # Install package
+aliases['xo'] = "doas xbps-remove -Oo" # Install package
+aliases['xr'] = "doas xbps-remove -R" # Purge package
+aliases['xu'] = "doas xbps-install -Su" # Full system upgrade
+aliases['xa'] = "doas xbps-alternatives" # Alternatives
+aliases['xm'] = "xbps-query -m | sed 's/-[0-9]\(.*\)//' | sed 's/\(.*\) //'" # Manualy installed
+
+
+aliases['svim'] = "doas nvim"
+
+aliases['sv'] = "doas sv"
+aliases['svl'] = "sv"
+aliases['rsv'] = "doas vsv"
+aliases['usv'] = "vsv -u"
+
+# pip, upgrade all packages (note may break projects requiring specific versions, not sure)
+aliases['piplup'] = "pip list --user --outdated | awk '{NF=1}1' | xargs -n1 pip install -U"
+
+# Apply PREFIX to cmake
+aliases['cmake'] = "cmake -DCMAKE_INSTALL_PREFIX=$PREFIX"
+
+aliases['xdeb'] = "xdeb -Sedf"
+aliases['xideb'] = "xbps-install -R ./binpkgs"
+
+# No more YouTube to MP3 sites...
+aliases['yta'] = "yt-dlp --extract-audio --audio-quality 0"
+
+aliases['dl'] = "aria2c"
+
+aliases['df'] = "df -h"
+aliases['lc'] = "wc -l"
+
+
+aliases['mpv'] = "mpv --script=/usr/lib/mpv-mpris/mpris.so"
+aliases['mpv-tor'] = "mpv '--ytdl-raw-options=proxy=[socks5://127.0.0.1:9050]'"
+aliases['tannie'] = 'HTTPS_PROXY="socks5://127.0.0.1:9050" lux'
+aliases['curl-tor'] = "curl -x 'socks5://127.0.0.1:9050' -C -"
+aliases['mega-tor'] = "megadl --proxy=socks5://127.0.0.1:9050"
+aliases['youtor'] = "yt-dlp --proxy socks5://127.0.0.1:9050"
+
+aliases['v'] = "$EDITOR"
+aliases['vv'] = "doas env HOME=$HOME LANG=$LANG $EDITOR" # Preserve enviornment for editor configuration
+aliases['netstat'] = "lsof -i" # Sort of
+
+aliases['lsbig'] = "du -chsx *(D) 2>/dev/null | sort -rh"
+aliases['dupes'] = "find . ! -empty -type f -exec md5sum {} + | sort | uniq -w32 -d" # Find duplicates
+aliases['fid'] = "grep -Irn" # Recursively find a pattern in a directory (eg. fid stdio someprojectdir)
+
+aliases['mnt'] = "udisksctl mount -b"
+aliases['mntftp'] = "curlftpfs"
+aliases['mtp'] = "aft-mtp-mount" 
+
+aliases['cls'] = "clear"
+
+aliases['pt'] = "pstree -aps"
+aliases['pk'] = "pkill"
+
+aliases['wth'] = "curl wttr.in"
+
+aliases['reboot'] = "doas reboot"
+aliases['poweroff'] = "doas poweroff"
+
+aliases['gcl'] = "git clone"
+aliases['gcm'] = "git commit"
+aliases['gpl'] = "git pull"
+aliases['gpu'] = "git push"
+aliases['gst'] = "git status"
+
+aliases['mosh'] = "mosh --no-ssh-pty"

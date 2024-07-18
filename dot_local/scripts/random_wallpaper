@@ -1,0 +1,6 @@
+#!/bin/sh
+
+picture=$(fd . ~/.dotfiles/wallpapers | shuf -n 1)
+
+hyprctl hyprpaper preload "$picture" & hyprctl hyprpaper wallpaper "eDP-1,$picture"
+

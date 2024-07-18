@@ -1,0 +1,10 @@
+// vim:ft=json
+{
+  "custom/weather": {
+    "exec": "~/.config/waybar/weather.sh",
+    "format": "{}",
+    "return-type": "json",
+    "interval": 300,
+    "tooltip": "true",
+  },
+}
