@@ -1,0 +1,27 @@
+.workspaces {
+    font-size: 1rem;
+    font-weight: bold;
+
+    .icon {
+      &.current {color: $fg;}
+    }
+    
+    .empty {
+      color: $black;
+      padding: 0rem 0.5rem;
+    }
+
+    .occupied {
+      color: lighten($color: $gray, $amount: 30%);
+      padding: 0rem 0.5rem;
+    }
+
+    .current {
+      color: $bg;
+      background-color:$fg;
+      padding: 0rem 0.5rem;
+      border-radius: 0.2rem;
+    }
+
+  }
+

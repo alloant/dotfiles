@@ -1,0 +1,2 @@
+#!/bin/sh
+exec ~/.scripts/get_location.py

@@ -1,0 +1,17 @@
+// vim:ft=json
+{
+    "custom/turbo": {
+        "exec": "$HOME/.config/waybar/modules/turbo.sh",
+        "return-type": "json",
+        "format": "{icon}",
+        "format-icons": {
+            "off": "",
+            "on": ""
+        },
+        "on-click": "$HOME/.local/scripts/toggle-turbo.sh; pkill -SIGRTMIN+7 waybar",
+        "exec-on-event": "true",
+        "signal": 7,
+        "tooltip-format": "Enable/disable turbo",
+        "interval": 50
+    }
+}

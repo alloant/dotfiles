@@ -1,0 +1,7 @@
+// vim:ft=json
+{
+    "tray": {
+        //"icon-size": 11,
+        "spacing": 12
+    }
+}

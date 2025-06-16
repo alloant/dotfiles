@@ -1,0 +1,14 @@
+// vim:ft=json
+{
+    "layer": "top", // Waybar at top layer
+    "position": "left", // Waybar position (top|bottom|left|right)
+    "output": "eDP-1", // Monitor use for waybar
+    
+    "modules-left": [
+      "hyprland/workspaces"
+    ],
+    "include": [
+      "~/.config/waybar/config.d/hypr",
+      "~/.config/waybar/config"
+    ]
+}

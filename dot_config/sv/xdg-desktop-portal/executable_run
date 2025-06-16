@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ "$XDG_SESSION_DESKTOP" = "Hyprland" ]; then
+  exec /usr/libexec/xdg-desktop-portal-hyprland
+  sleep 2
+  exec /usr/libexec/xdg-desktop-portal
+else
+  exec /usr/libexec/xdg-desktop-portal
+fi

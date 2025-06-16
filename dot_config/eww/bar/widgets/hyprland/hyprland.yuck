@@ -1,0 +1,20 @@
+(deflisten workspaces :initial "[]" "bash bar/widgets/hyprland/scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "bash bar/widgets/hyprland/scripts/get-active-workspace")
+
+(defwidget workspaces []
+  (eventbox :onscroll "bash bar/widgets/hyprland/scripts/change-active-workspace {} ${current_workspace}" :class "workspaces-widget"
+    (box :space-evenly true
+      :class "workspaces"
+      :orientation "v"
+      (label :text "${workspaces}${current_workspace}" :visible false)
+      (for workspace in workspaces
+        (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+          (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label :text "${workspace.id}")
+            )
+          )
+        )
+      )
+    )
+  )
+

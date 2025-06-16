@@ -1,0 +1,53 @@
+// vim:ft=json
+{
+  "modules-center": [
+//    "clock#month",
+//    "clock#day",
+//    "clock#weekday",
+//    "clock#time"
+    "clock#date",
+    "clock"
+  ],
+  "modules-right": [ 
+    "group/settings",
+    "tray",
+    "pulseaudio#icon",
+    "pulseaudio#mic",
+    "cpu#icon",
+    "cpu",
+    "temperature#icon",
+    "temperature",
+    "battery#icon",
+    "battery"
+  ],
+  "gtk-layer-shell": false,
+  "group/settings": {
+    "orientation": "vertical",
+    "drawer": {
+      "transition-duration": "500",
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/icon_settings",
+      "custom/turbo",
+      "custom/threshold",
+      "custom/wlsunset",
+      "idle_inhibitor"
+    ]
+  },
+  "custom/icon_settings": {
+    "format": ""
+  },
+  "include": [
+    "~/.config/waybar/config.d/audio",
+    "~/.config/waybar/config.d/battery",
+    "~/.config/waybar/config.d/battery_threshold",
+    "~/.config/waybar/config.d/cpu",
+    "~/.config/waybar/config.d/clock",
+    "~/.config/waybar/config.d/idle_inhibitor",
+    "~/.config/waybar/config.d/temperature",
+    "~/.config/waybar/config.d/tray",
+    "~/.config/waybar/config.d/turbo",
+    "~/.config/waybar/config.d/wlsunset"
+  ]
+}

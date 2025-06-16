@@ -1,0 +1,25 @@
+// vim:ft=json
+{
+  "battery#icon": {
+    "bat": "BAT0",
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "rotate": 90,
+    "format": "{icon}",		
+    "format-charging": "",
+    "format-plugged":  "",
+    "format-discharging": "{icon}",
+    "format-icons": ["", "", "", "", ""]
+  }, 
+  "battery": {
+    "bat": "BAT0",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}"
+  } 
+}

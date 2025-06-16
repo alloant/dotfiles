@@ -1,0 +1,29 @@
+// vim:ft=json
+{
+  "pulseaudio#icon": {
+    "format": "{icon}",
+    "format-bluetooth": "<small>{icon}</small>",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋎",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "volumectl toggle-mute",
+    "on-click-right": "pavucontrol-qt",
+    "ignored-sinks": ["Easy Effects Sink"],
+    "tooltip":false
+  },
+  "pulseaudio#mic": {
+    "format": "{format_source}",
+    "format-source-muted": "",
+    "format-source": "",
+    "on-click": "volumectl -m toggle-mute",
+    "tooltip": false
+  }
+}

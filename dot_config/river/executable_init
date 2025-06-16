@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Binding to reload the configuration
+riverctl map normal "Super" R spawn $HOME/.config/river/init
+
+# Other scripts from config.d
+riverctl spawn $HOME/.config/river/config.d/autostart.sh
+riverctl spawn $HOME/.config/river/config.d/rules.sh
+riverctl spawn $HOME/.config/river/config.d/keybinds.sh
+
+#riverctl input 1133:45089:Logitech_Pebble_Mouse accel-profile none
+#riverctl input 1133:45089:Logitech_Pebble_Mouse pointer-accel 0.6
+#riverctl input 1133:45089:Logitech_Pebble_Mouse scroll-method button
+#riverctl input 1133:45089:Logitech_Pebble_Mouse scroll-button BTN_SIDE
+
+#Touchpad
+riverctl input 1267:12363:ELAN469D:00_04F3:304B_Touchpad disable-while-typing enabled
+riverctl input 1267:12363:ELAN469D:00_04F3:304B_Touchpad accel-profile none
+riverctl input 1267:12363:ELAN469D:00_04F3:304B_Touchpad pointer-accel 0.2
+
+# Cursor mode
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super BTN_RIGHT resize-view
+riverctl focus-follow-cursor normal
+riverctl set-cursor-warp on-output-change

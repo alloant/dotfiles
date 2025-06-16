@@ -1,0 +1,5 @@
+#!/bin/sh
+
+test -f /dev/tcp/8.8.8.8/53 > /dev/null || exit 1
+
+exec mega-sync

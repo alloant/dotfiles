@@ -1,0 +1,5 @@
+#!/bin/sh
+test -f /run/user/1000/wayland-*.lock >/dev/null || exit 1
+#sv check "$HOME/runit/service/wireplumbler" >/dev/null || exit 1
+
+exec gBar bar 0

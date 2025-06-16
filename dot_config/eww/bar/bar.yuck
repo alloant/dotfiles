@@ -1,0 +1,51 @@
+(include "bar/hyprland/hyprland.yuck")
+(include "bar/widgets/widgets.yuck")
+
+;; WIDGETS
+
+(defwidget bar []
+  (box :class "bar" :orientation "v" :space-evenly true :halign "center" :vexpand false
+    (start) 
+    (center)
+    (end) 
+  ))
+
+(defwidget start []
+  (box :class "start" :orientation "v" :halign "center" :valign "start" :spacing 10 :space-evenly false :vexpand false
+    (fuzzel) 
+    (workspaces) 
+  ))
+
+
+(defwidget center []
+  (box :class "center" :halign "center" :valign "center"  :orientation "v" :vexpand false
+    (clock) 
+  ))
+
+(defwidget apps []
+  (box :class "apps" :spacing 10 :space-evenly false :valign "end" :halign "center" :orientation "v" :vexpand false)
+)
+
+(defwidget end []
+  (box :class "" :valign "end":orientation "v" :space-evenly false :spacing 15 :vexpand false
+    (central-icon)
+    (bat)
+  ))
+
+(defwidget tray []
+  (systray :orientation "v" :icon-size 10
+  ))
+
+
+;; WINDOWS
+
+(defwindow bar
+  :monitor 0
+  :exclusive true
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :height "97%"
+                      :anchor "center left")
+  :reserve (struts :side "top" :distance "4%")
+  (bar)
+)

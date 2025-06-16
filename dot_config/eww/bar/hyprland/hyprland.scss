@@ -1,0 +1,37 @@
+.workspaces {
+    font-size: 1rem;
+    font-weight: bold;
+    
+    .icon {
+      &.current {color: $fg;}
+    }
+    
+    .current {
+        color: $green;
+    }
+
+    .empty {
+      color: $black;
+    }
+
+    .occupied {
+      color: lighten($color: $gray, $amount: 10%);
+    }
+
+    .current {
+      color: $green;
+    }
+
+    :hover {
+      &.empty {
+        color: lighten($color: $black, $amount: 5%);
+      }
+      &.occupied {
+        color: lighten($color: $black, $amount: 20%);
+      }
+      &.current {
+        color: darken($color: $green, $amount: 10%);
+      }
+    }
+  }
+

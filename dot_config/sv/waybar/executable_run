@@ -1,0 +1,22 @@
+#!/bin/sh
+test -f /run/user/1000/wayland-*.lock >/dev/null || exit 1
+test -f /run/user/1000/pipewire-*-manager.lock >/dev/null || exit 1
+#sv check "$HOME/runit/service/hyprpaper" >/dev/null || exit 1
+#sv check "$HOME/runit/service/wireplumbler" >/dev/null || exit 1
+
+
+if [ "$XDG_SESSION_DESKTOP" = "Hyprland" ]; then
+    exec waybar -c ~/.config/waybar/config_hypr -s ~/.config/waybar/style.css
+fi
+
+if [ "$XDG_SESSION_DESKTOP" = "qtile" ]; then
+    exec waybar -c ~/.config/waybar/config_qtile -s ~/.config/waybar/style.css
+fi
+
+if [ "$XDG_SESSION_DESKTOP" = "river" ]; then
+    exec waybar -c ~/.config/waybar/config_river -s ~/.config/waybar/style.css
+fi
+
+if [ "$XDG_SESSION_DESKTOP" = "sway" ]; then
+    exec waybar -c ~/.config/waybar/config_sway -s ~/.config/waybar/style.css
+fi

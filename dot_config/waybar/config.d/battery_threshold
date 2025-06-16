@@ -1,0 +1,18 @@
+// vim:ft=json
+{
+    "custom/threshold": {
+        "exec": "$HOME/.config/waybar/modules/threshold.sh",
+        "return-type": "json",
+        "rotate": 90,
+        "format": "{icon}",
+        "format-icons": {
+            "off": "󰂄",
+            "on": "󰂌"
+        },
+        "on-click": "$HOME/.config/waybar/modules/toggle-battery.sh; pkill -SIGRTMIN+7 waybar",
+        "exec-on-event": "true",
+        "signal": 7,
+        "tooltip-format": "Enable/disable battery threshold",
+        "interval": 50
+    }
+}

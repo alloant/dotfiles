@@ -1,0 +1,262 @@
+### Key bindings
+
+###########################
+# Basics:                 #
+###########################
+
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+#set $menu exec j4-dmenu-desktop --dmenu="bemenu"
+
+    # Application Launcher
+    #set $menu j4-dmenu-desktop --dmenu="bemenu"
+    set $menu j4-dmenu-desktop --dmenu="wofi -d -i"
+    #set $menu wofi --show drun -f -i --width 350
+	# Menu Script
+	set $altmenu ~/.config/sway/scripts/wofi_csv
+	# Application spawner
+	set $spawn spawn
+
+
+
+# clipman
+#bindsym $mod+c exec clipman pick -t wofi
+
+# start a terminal
+bindsym $mod+Return exec $term
+
+# kill focused window
+bindsym $mod+q kill
+
+# start your launcher
+bindsym $mod+d exec $menu
+bindsym Alt+d exec wofi
+
+# Menus
+bindsym $mod+Shift+d exec $altmenu Menu
+bindsym $mod+Shift+q exec $altmenu Power
+#bindsym $mod+d exec $menu
+#bindsym Alt+d exec bemenu-run
+
+
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+#########################
+# Moving around:        #
+#########################
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+# Move your focus around
+#bindsym $mod+$left focus left
+#bindsym $mod+$down focus down
+#bindsym $mod+$up focus up
+#bindsym $mod+$right focus right
+# or use $mod+[up|down|left|right]
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
+
+# _move_ the focused window with the same, but add Shift
+#bindsym $mod+Shift+$left move left
+#bindsym $mod+Shift+$down move down
+#bindsym $mod+Shift+$up move up
+#bindsym $mod+Shift+$right move right
+# ditto, with arrow keys
+#bindsym $mod+Shift+Left move left
+#bindsym $mod+Shift+Down move down
+#bindsym $mod+Shift+Up move up
+#bindsym $mod+Shift+Right move right
+
+
+
+
+############################
+#  Layouts                 #
+############################
+
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+#bindsym $mod+w splitt
+#bindsym $mod+Shift+w layout toggle splitv splith
+# Switch the current container between different layout styles
+#bindsym $mod+Tab layout toggle tabbed split
+#bindsym $mod+Shift+Tab split toggle
+
+#bindsym $mod+s sticky toggle
+
+# Make the current focus fullscreen
+#bindsym $mod+Shift+f fullscreen
+
+# $mod+g: Reset Gaps to default 
+#bindsym $mod+g gaps inner all set $gapsin, gaps outer all set $gapsout
+# $mod+Shift+g: Remove Gaps
+#bindsym $mod+Shift+g gaps inner all set 0, gaps outer all set 0
+	
+# $mod+t: Toggle focused window between tiled and floating 
+#bindsym $mod+grave floating toggle
+
+# $mod+Shift+t: Swap focus between tiling and floating areas 
+#bindsym $mod+Shift+grave focus mode_toggle
+
+# move focus to the parent container
+#bindsym $mod+a focus parent
+
+
+###############
+# Scratchpad: #
+###############
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+Shift+minus scratchpad show
+    
+    
+#################
+#Resize         #
+#################
+
+bindsym $mod+r mode "resize"
+
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+# ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+# return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+##################################
+# Applications                   #
+##################################
+
+# start mpv-tor with clipboard
+    bindsym $mod+v exec $term --class "f_alacritty" -e /home/antonio/.config/sway/scripts/mpv-tor-clipboard.sh
+
+# start a browser
+    bindsym $mod+z exec qutebrowser
+
+# start editor
+    #bindsym $mod+g exec geany
+    bindsym $mod+e exec nvim-qt
+    
+# start ranger
+#    bindsym $mod+x exec $term -e ranger
+ 
+# start lf
+    bindsym $mod+a exec $term -e lf-tmux
+   
+# block
+	bindsym $mod+Shift+b exec swaylock -f -c 000000
+# block
+	bindsym $mod+Alt+b exec bluetooth_toggle.sh
+    bindsym $mod+b exec wofi-bluetooth
+	
+# start networkmanager-dmenu
+    #bindsym $mod+n exec networkmanager_dmenu | xargs swaymsg exec
+    bindsym $mod+n exec iwd-dmenu
+
+# start wdisplays
+#	bindsym $mod+Shift+d exec wdisplays
+
+# passmenu
+    bindsym $mod+c exec passmenu --type
+    #bindsym $mod+Shift+p exec passmenu
+
+
+# ncmpcpp
+    bindsym $mod+m exec ncmpcpp
+
+# pulseeffects
+    #bindsym $mod+Shift+p exec pulseeffects --gapplication-service
+
+# On/Off screen
+    bindsym $mod+o exec ~/.config/sway/scripts/screenOnOff.sh
+	#bindsym $mod+Shift+o output eDP-1 disable
+	#bindsym $mod+o output eDP-1 enable
+	#bindswitch lid:on exec ~/.config/sway/scripts/screenOnOff.sh
+	#bindswitch lid:off exec ~/.config/sway/scripts/screenOnOff.sh
+
+
+####################
+# Special keys
+# ##################
+    
+    bindsym XF86AudioRaiseVolume exec pamixer -i 5
+    bindsym XF86AudioLowerVolume exec pamixer -d 5
+    bindsym XF86AudioMute exec pamixer -t
+    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    
+    bindsym XF86MonBrightnessDown exec light -U 5
+    bindsym XF86MonBrightnessUp exec light -A 5
+    
+    #bindsym XF86AudioRaiseVolume exec volumectl raise
+    #bindsym XF86AudioLowerVolume exec volumectl lower
+    #bindsym XF86AudioMute exec volumectl mute
+    #bindsym XF86AudioMicMute exec volumectl mute --mic
+    
+    #bindsym XF86MonBrightnessDown exec lightctl lower
+    #bindsym XF86MonBrightnessUp exec lightctl raise
+
+    bindsym XF86AudioPlay exec ~/.scripts/playing.sh play-pause
+    bindsym XF86AudioNext exec ~/.scripts/playing.sh next
+    bindsym XF86AudioPrev exec ~/.scripts/playing.sh previous
+    bindsym XF86AudioStop exec ~/.scripts/playing.sh stop
+
+
+
+
+
+
+
+
