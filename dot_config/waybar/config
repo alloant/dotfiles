@@ -11,6 +11,8 @@
   "modules-right": [ 
     "group/settings",
     "tray",
+    //"wireplumber#sink",
+    //"wireplumber#source",
     "pulseaudio#icon",
     "pulseaudio#mic",
     "cpu#icon",
@@ -36,7 +38,8 @@
     ]
   },
   "custom/icon_settings": {
-    "format": ""
+    "format": "",
+    "tooltip": false
   },
   "include": [
     "~/.config/waybar/config.d/audio",

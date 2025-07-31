@@ -37,6 +37,7 @@ settings:
     https://flights.cathaypacific.com: true
     https://www.goindigo.in: true
     https://www.google.com: true
+    https://www.reliancedigital.in: true
   content.images:
     global: true
   content.javascript.clipboard:
@@ -65,6 +66,7 @@ settings:
     https://soporte.vegagc.org: true
     https://web.whatsapp.com: true
     https://www.bitdefender.com: true
+    https://www.lenovo.com: true
     https://www.reddit.com: false
     https://www.singaporeair.com: true
     https://www7.123movies.as: false
