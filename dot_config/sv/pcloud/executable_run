@@ -1,0 +1,5 @@
+#!/bin/sh
+
+
+#exec ~/.local/bin/pcloudcc -u alloant@gmail.com > /tmp/pcloud.log
+exec ~/.local/bin/pcloud > /tmp/pcloud.log

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+test -f /run/user/1000/wayland-*.lock >/dev/null || exit 1
+
+exec hypridle
+

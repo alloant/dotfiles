@@ -1,0 +1,37 @@
+exec_always "pkill -f 'python3? .+/swaymonad.py';  ~/.config/sway/swaymonad.py"
+
+bindsym $mod+Tab nop promote_window
+
+bindsym $mod+j nop focus_next_window
+bindsym $mod+k nop focus_prev_window
+
+bindsym $mod+Shift+Left nop move left
+bindsym $mod+Shift+Down nop move down
+bindsym $mod+Shift+Up nop move up
+bindsym $mod+Shift+Right nop move right
+
+bindsym $mod+Shift+j nop swap_with_next_window
+bindsym $mod+Shift+k nop swap_with_prev_window
+
+bindsym $mod+x nop reflectx
+bindsym $mod+y nop reflecty
+bindsym $mod+t nop transpose
+
+bindsym $mod+f nop fullscreen
+
+bindsym $mod+Comma nop increment_masters
+bindsym $mod+Period nop decrement_masters
+
+mode "layout" {
+  bindsym t nop set_layout tall
+  bindsym 3 nop set_layout 3_col
+  bindsym n nop set_layout nop
+
+  # Return to default mode
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+l mode "layout"
+
+mouse_warping container
+focus_wrapping no

@@ -1,0 +1,21 @@
+// vim:ft=json
+{
+  "temperature#icon": {
+    //"thermal-zone": 5,
+    "interval": "10",
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "critical-threshold": 65,
+    "format-critical": "",
+    "format": "{icon}",
+    "format-icons": ["", "", ""],
+    "tooltip": false
+  },
+  "temperature": {
+    //"thermal-zone": 5,
+    "interval": "10",
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "critical-threshold": 65,
+    "format": "{temperatureC}",
+    "tooltip": false
+  }
+}

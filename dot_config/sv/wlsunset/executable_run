@@ -1,0 +1,16 @@
+#!/bin/sh
+test -f /run/user/1000/wayland-*.lock >/dev/null || exit 1
+
+filename=~/.local/location
+
+lat=$(head -n 1 $filename)
+lon=$(head -n 2 $filename)
+
+# SG
+#exec wlsunset -l 3 -L 101.77 -g 0.8 -t 3500 -T 5500
+
+# Delhi
+exec wlsunset -l 28.4 -L 77.1 -g 0.8 -t 4000 -T 6000
+
+# Mumbai
+#exec wlsunset -l 19.1 -L 72.9 -g 0.8 -t 3000 -T 5000

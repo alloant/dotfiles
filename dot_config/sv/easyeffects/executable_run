@@ -1,0 +1,4 @@
+#!/bin/sh
+sv check "$HOME/runit/service/wireplumber" >/dev/null || exit 1
+
+exec easyeffects --gapplication-service

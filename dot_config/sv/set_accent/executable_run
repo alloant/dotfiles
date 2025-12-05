@@ -1,0 +1,5 @@
+#!/bin/sh
+sv check "$HOME/runit/service/hyprpaper" >/dev/null || exit 1
+
+exec ~/.local/scripts/set_accent
+

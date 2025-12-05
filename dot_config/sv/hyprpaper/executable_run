@@ -1,0 +1,8 @@
+#!/bin/sh
+
+test -f /run/user/1000/wayland-*.lock >/dev/null || exit 1
+
+~/.local/scripts/random_wallpaper_config
+
+exec hyprpaper
+

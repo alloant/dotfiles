@@ -1,0 +1,27 @@
+#!/bin/sh
+
+test -f /run/user/1000/wayland-*.lock >/dev/null || exit 1
+
+if [ "$XDG_SESSION_DESKTOP" = "qtile" ]; then
+  exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'wlr-randr --output eDP-1 --off' \
+    resume 'wlr-randr --output eDP-1 --on' \
+    before-sleep 'swaylock -f -c 000000'
+fi
+
+if [ "$XDG_SESSION_DESKTOP" = "river" ]; then
+  exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'wlr-randr --output eDP-1 --off' \
+    resume 'wlr-randr --output eDP-1 --on' \
+    before-sleep 'swaylock -f -c 000000'
+fi
+
+if [ "$XDG_SESSION_DESKTOP" = "Hyprland" ]; then
+  exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'hyprctl dispatch dpms off' \
+    resume 'hyprctl dispatch dpms on && usv restart wlsunset' \
+    before-sleep 'swaylock -f -c 000000'
+fi

@@ -1,0 +1,54 @@
+// vim:ft=json
+{
+  "pulseaudio#icon": {
+    "format": "{icon}",
+    "format-bluetooth": "<small>{icon}</small>",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋎",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "volumectl toggle-mute",
+    "on-click-right": "flatpak run com.saivert.pwvucontrol",
+    "ignored-sinks": ["Easy Effects Sink"],
+    "tooltip":false
+  },
+  "pulseaudio#mic": {
+    "format": "{format_source}",
+    "format-source-muted": "",
+    "format-source": "",
+    "on-click": "volumectl -m toggle-mute",
+    "tooltip": false
+  },
+  "wireplumber": {
+    "format": "{icon}",
+    "format-muted": "󰖁",
+    "format-icons": {
+        "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+        "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "phone-muted": "",
+        "portable": "",
+        "car": "",
+        "default": ["", ""]
+    },
+    "on-click": "volumectl toggle-mute",
+    "format-icons": ["", "", ""]
+  },
+  "wireplumber#source": {
+    "node-type": "Audio/Source",
+    "format": "󰍬",
+    "format-muted": "󰍭",
+    "on-click": "volumectl -m toggle-mute",
+    "scroll-step": 5,
+  }
+}

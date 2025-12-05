@@ -1,0 +1,17 @@
+#!/bin/sh
+
+test -f /run/user/1000/wayland-1.lock >/dev/null || exit 1
+
+if [ "$XDG_SESSION_DESKTOP" = "Hyprland" ]; then
+  exec swayidle -w \
+    timeout 300 'swaylock -f --color 000000' \
+    timeout 600 'hyprctl dispatch dpms off' \
+    resume 'hyprctl dispatch dpms on' \
+    before-sleep 'swaylock -f --color 000000'
+else
+  exec swayidle -w \
+    timeout 300 'if [ "$(playerctl --list-all | grep mpv)" = "mpv" ]; then echo 1; else swaylock -f -c 000000; fi' \
+    timeout 600 'if [ "$(playerctl --list-all | grep mpv)" = "mpv" ]; then echo 1; else wlr-randr --output eDP-1 --off; fi' \
+    resume 'wlr-randr --output eDP-1 --on' \
+    before-sleep 'swaylock -f -c 000000'
+fi

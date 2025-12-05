@@ -1,0 +1,286 @@
+@define-color bg rgba(0, 0, 0, 0.8);
+@define-color bg-light rgba(20, 20, 20, 0.8);
+@define-color fg #dddddd;
+/*@define-color fg-accent #0a0d2e;
+@define-color accent #1e81b0;*/
+
+@import url('accent.css');
+/*@import url('file:///home/antonio/.cache/wal/colors-waybar.css');
+@define-color accent @color3;
+@define-color fg-accent @color0;*/
+
+
+@define-color bg-warning #ebcb8b;
+@define-color bg-critical #bf616a;
+
+@define-color fg-warning #143474;
+@define-color fg-critical #ffffff;
+
+@define-color inactive #dddddd;
+
+* {
+  font-family: "Hasklug Nerd Font Mono";
+  font-size: 12px;
+}
+
+window#waybar {
+  background: transparent;
+  color: @fg;
+}
+
+.modules-left {
+  margin: 6px 1px 0px 2px;
+}
+.modules-center {
+  margin: 0px 1px 0px 2px;
+}
+.modules-right {
+  margin: 0px 1px 6px 2px;
+}
+
+button {
+  padding: 0px;
+  margin: 0px;
+  min-height: 1.2rem;
+  font-weight: bold;
+}
+
+tooltip {
+  background: @bg;
+}
+
+tooltip label {
+  color: @fg;
+  font-size: 14px;
+}
+
+@keyframes blink-warning {
+    70% {
+        color: @fg;
+    }
+
+    to {
+        color: @fg-warning;
+        background-color: @bg-warning;
+    }
+}
+
+@keyframes blink-critical {
+    70% {
+      color: @fg;
+    }
+
+    to {
+        color: @fg-critical;
+        background-color: @bg-critical;
+    }
+}
+
+
+/* BLINK MODULES ----------------------------------------------------- */
+/* Each module that should blink */
+#cpu,
+#temperature,
+#battery {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Each critical that should blink */
+#cpu.critical,
+#temperature.critical,
+#battery.critical.discharging {
+    animation-name: blink-critical;
+    animation-duration: 3s;
+}
+
+/* Each warning that should blink */
+#cpu.warning,
+#temperature.warning,
+#battery.warning.discharging {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+
+
+/* Workspaces hyprland */
+#workspaces {
+    background-color: transparent;
+}
+#workspaces button {
+    border-radius: 3px;
+    color: @inactive;
+}
+#workspaces button.active {
+    color: @fg-accent;
+    background-color: @accent;
+}
+#workspaces button.empty {
+    color: transparent;
+    background-color: transparent;
+}
+
+/* River tags */
+#tags {
+    background-color: transparent;
+}
+
+#tags button {
+    border-radius: 3px;
+    color: transparent;
+    margin-bottom: 2px;
+}
+
+#tags button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: @fg;
+}
+
+#tags button.focused {
+    color: @fg;
+    background-color: @accent;
+}
+
+#tags button.occupied {
+      color: @inactive;
+      background-color: @bg;
+}
+
+#tags button.focused.occupied {
+    color: @fg;
+    background-color: @accent;
+}
+
+/* TOP AND BOTTOM ------------------------------------ */
+
+/* All modules on top */
+#cpu.icon,
+#temperature.icon,
+#pulseaudio.icon,
+#wireplumber,
+#battery.icon {
+  min-height: 1.2rem;
+  margin-top: 6px;
+  font-size: 14px;
+  border-radius: 4px 4px 0px 0px;
+  background-color: @accent;
+  color: @fg-accent;
+}
+
+/* All modules down */
+#cpu,
+#wireplumber.source,
+#pulseaudio.mic,
+#temperature,
+#battery {
+  min-height: 1.2rem;
+  border-radius: 0px 0px 4px 4px;
+  background-color: @bg;
+}
+
+#custom-icon_settings {
+  background: @bg;
+  margin: 3px 0px 3px 0px;
+  border-radius: 4px 4px 4px 4px;
+  font-size: 16px;
+  color: @fg;
+  min-width: 1.2rem;
+  min-height: 1.2rem;
+}
+
+
+#custom-threshold.off {
+  color: @accent;
+}
+/* End of battery */
+
+
+
+/* SETTINGS BAR */
+
+#idle_inhibitor,
+#custom-turbo,
+#custom-wlsunset,
+#custom-threshold {
+  background: @bg-light;
+  font-size: 14px;
+  color: @fg;
+  padding-bottom: 4px; 
+  min-width: 1rem;
+  min-height: 1rem;
+}
+
+#idle_inhibitor {
+  border-radius: 0px 0px 4px 4px;
+  font-size: 16px;
+}
+
+#custom-turbo {
+  border-radius: 4px 4px 0px 0px;
+  font-size: 20px;
+  padding-bottom: 2px; 
+}
+
+#custom-turbo.off {
+  color: @accent2;
+}
+
+#tray {
+  margin: 3px 0px 3px 0px;
+  padding: 3px 0px 3px 0px;
+  border-radius: 4px 4px 4px 4px;
+  background: @bg;
+  font-size: 20px;
+}
+
+#wireplumber,
+#pulseaudio.icon {
+  margin-top: 3px;
+  font-size: 16px;
+  background: @accent;
+  color: @fg-accent;
+}
+
+#wireplumber.muted,
+#pulseaudio.muted.icon {
+  background: @bg;
+  color: @fg;
+  font-size: 16px;
+}
+
+#wireplumber.source,
+#pulseaudio.mic {
+  background: @bg-warning;
+  color: @fg-warning;
+
+}
+
+#wireplumber.source-muted.source,
+#pulseaudio.source-muted.mic { /* Unsused but kept for those who needs it */
+  background: @bg;
+  color: @fg;
+}
+
+
+/* clock */
+
+
+#clock {
+  background: @bg;
+  color: @fg;
+  font-size: 16px;
+  border-radius: 0px 0px 3px 3px;
+  font-weight: bold;
+}
+
+#clock.date {
+  background: @accent;
+  color: @fg-accent;
+  font-size: 12px;
+  border-radius: 3px 3px 0px 0px;
+}
+
+
