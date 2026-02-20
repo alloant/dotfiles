@@ -1,6 +1,7 @@
 // vim:ft=json
 {
     "river/tags": {
-        "num-tags": 5
+        "num-tags": 5,
+        "hide-vacant": true
     }
 }

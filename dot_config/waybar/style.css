@@ -160,7 +160,6 @@ tooltip label {
 #cpu.icon,
 #temperature.icon,
 #pulseaudio.icon,
-#wireplumber,
 #battery.icon {
   min-height: 1.2rem;
   margin-top: 6px;
@@ -172,7 +171,6 @@ tooltip label {
 
 /* All modules down */
 #cpu,
-#wireplumber.source,
 #pulseaudio.mic,
 #temperature,
 #battery {
@@ -236,30 +234,23 @@ tooltip label {
   font-size: 20px;
 }
 
-#wireplumber,
-#pulseaudio.icon {
-  margin-top: 3px;
-  font-size: 16px;
+#wireplumber {
   background: @accent;
   color: @fg-accent;
+  font-size: 16px;
+  border-radius: 4px 4px 0px 0px;
 }
 
-#wireplumber.muted,
-#pulseaudio.muted.icon {
+#wireplumber.source {
+  border-radius: 0px 0px 4px 4px;
+}
+
+#wireplumber.muted {
   background: @bg;
   color: @fg;
-  font-size: 16px;
 }
 
-#wireplumber.source,
-#pulseaudio.mic {
-  background: @bg-warning;
-  color: @fg-warning;
-
-}
-
-#wireplumber.source-muted.source,
-#pulseaudio.source-muted.mic { /* Unsused but kept for those who needs it */
+#wireplumber.source.muted { /* Unsused but kept for those who needs it */
   background: @bg;
   color: @fg;
 }

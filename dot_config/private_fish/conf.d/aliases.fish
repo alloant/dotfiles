@@ -24,8 +24,8 @@ alias xm "xbps-query -m | sed 's/-[0-9]\(.*\)//' | sed 's/\(.*\) //'" # Manualy 
 
 # Nvim for toor
 alias svim "doas nvim"
-alias v "$EDITOR"
-alias vv "doas env HOME=$HOME LANG=$LANG $EDITOR" # Preserve enviornment for editor configuration
+#alias v "$EDITOR"
+#alias vv "doas env HOME=$HOME LANG=$LANG $EDITOR" # Preserve enviornment for editor configuration
 
 # Make sv and reboot and poweroff for user
 alias sv "doas sv"

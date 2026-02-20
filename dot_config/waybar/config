@@ -11,12 +11,10 @@
   "modules-right": [ 
     "group/settings",
     "tray",
-    //"wireplumber#sink",
-    //"wireplumber#source",
-    "pulseaudio#icon",
-    "pulseaudio#mic",
-    //"wireplumber",
-    //"wireplumber#source",
+    //"pulseaudio#icon",
+    //"pulseaudio#mic",
+    "wireplumber",
+    "wireplumber#source",
     "cpu#icon",
     "cpu",
     "temperature#icon",
@@ -25,6 +23,7 @@
     "battery"
   ],
   "gtk-layer-shell": false,
+  "exclusive": true,
   "group/settings": {
     "orientation": "vertical",
     "drawer": {

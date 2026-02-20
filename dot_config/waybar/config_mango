@@ -1,0 +1,14 @@
+// vim:ft=json
+{
+    "layer": "overlay",
+    //"layer": "top", // Waybar at top layer
+    "position": "right", // Waybar position (top|bottom|left|right)
+    
+    "modules-left": [
+      "ext/workspaces"
+    ],
+    "include": [
+      "~/.config/waybar/config",
+      "~/.config/waybar/config.d/mango"
+    ]
+}
