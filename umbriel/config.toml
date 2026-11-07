@@ -1,0 +1,17 @@
+# Optional split configuration
+# https://docs.noctalia.dev/umbriel/configuration/#include
+[include]
+files = [
+  "general.toml",
+  "appearance.toml",
+  "layout.toml",
+  "environment.toml",
+  "keybinds.toml",
+  "rules.toml",
+]
+
+[include.optional]
+files = ["noctalia.toml"]
+
+
+

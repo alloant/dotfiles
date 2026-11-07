@@ -1,0 +1,4 @@
+[mgr]
+append_keymap = [
+  { on = [ "t", "c" ], run = 'shell --orphan kitty', desc = "Open Kitty in current folder" },
+]

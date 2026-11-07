@@ -1,0 +1,28 @@
+[environment]
+ELECTRON_OZONE_PLATFORM_HINT = "auto"
+SDL_VIDEODRIVER = "wayland"
+GTK_IM_MODULE = "fcitx"
+QT_IM_MODULE = "fcitx"
+SDL_IM_MODULE = "fcitx"
+XMODIFIERS = "@im=fcitx"
+
+GLFW_IM_MODULE = "ibus"
+
+GSK_RENDERER = "ngl"
+
+XDG_CONFIG_DIR = "~/.config"
+
+QT_QPA_PLATFORM = "wayland"
+QT_QPA_PLATFORMTHEME = "qt6ct"
+QT_QPA_PLATFORMTHEME_QT6 = "qt6ct"
+
+EDITOR = "nvim"
+TERMINAL = "kitty"
+OPENER = "handlr"
+
+TAPO_USERNAME = "osnola@duck.com"
+TAPO_PASSWORD = "!V7k4fs^\"_xNOVGk"
+IP_ADDRESS = "192.168.1.99"
+
+MOZ_ENABLE_WAYLAND = "1"
+LIBVA_DRIVER_NAME = "iHD"

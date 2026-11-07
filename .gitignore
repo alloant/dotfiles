@@ -1,0 +1,13 @@
+# 1. Ignore everything
+/*
+
+# 2. But track this specific file
+!.gitignore
+!fish
+!fuzzel
+!hypr
+!kitty
+!mango
+!mpv
+!umbriel
+!yazi
